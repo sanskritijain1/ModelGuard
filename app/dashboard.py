@@ -9,6 +9,9 @@ import plotly.express as px
 BASE_DIR = Path(__file__).resolve().parents[1]
 DB_PATH = BASE_DIR / "data" / "predictions.db"
 
+DRIFT_REPORT_PATH = BASE_DIR / "reports" / "drift_report.html"
+DRIFT_SUMMARY_PATH = BASE_DIR / "reports" / "drift_summary.json"
+
 st.set_page_config(
     page_title="ModelGuard Dashboard",
     page_icon="📊",
@@ -119,3 +122,32 @@ st.dataframe(
     logs_df.sort_values("timestamp", ascending=False),
     use_container_width=True,
 )
+
+st.markdown("---")
+st.subheader("Data Drift Monitoring")
+
+if DRIFT_SUMMARY_PATH.exists():
+    with open(DRIFT_SUMMARY_PATH, "r") as f:
+        drift_summary = json.load(f)
+
+    col1, col2, col3 = st.columns(3)
+
+    col1.metric("Reference Rows", drift_summary["reference_rows"])
+    col2.metric("Current Rows", drift_summary["current_rows"])
+    col3.metric("Monitored Features", drift_summary["num_features"])
+
+    st.write("Numerical features:", drift_summary["numerical_features"])
+    st.write("Categorical features:", drift_summary["categorical_features"])
+else:
+    st.warning("No drift summary found yet. Run scripts/drift_detection.py first.")
+
+if DRIFT_REPORT_PATH.exists():
+    with open(DRIFT_REPORT_PATH, "rb") as f:
+        st.download_button(
+            label="Download Evidently Drift Report",
+            data=f,
+            file_name="drift_report.html",
+            mime="text/html",
+        )
+else:
+    st.warning("No drift report found yet.")
