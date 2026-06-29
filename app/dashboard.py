@@ -11,6 +11,7 @@ DB_PATH = BASE_DIR / "data" / "predictions.db"
 
 DRIFT_REPORT_PATH = BASE_DIR / "reports" / "drift_report.html"
 DRIFT_SUMMARY_PATH = BASE_DIR / "reports" / "drift_summary.json"
+RETRAINING_RECOMMENDATION_PATH = BASE_DIR / "reports" / "retraining_recommendation.json"
 
 st.set_page_config(
     page_title="ModelGuard Dashboard",
@@ -151,3 +152,34 @@ if DRIFT_REPORT_PATH.exists():
         )
 else:
     st.warning("No drift report found yet.")
+
+st.markdown("---")
+st.subheader("Retraining Recommendation")
+
+if RETRAINING_RECOMMENDATION_PATH.exists():
+    with open(RETRAINING_RECOMMENDATION_PATH, "r") as f:
+        retraining_info = json.load(f)
+
+    retraining_recommended = retraining_info["retraining_recommended"]
+
+    if retraining_recommended:
+        st.error("Retraining Recommended")
+    else:
+        st.success("Retraining Not Urgently Required")
+
+    col1, col2, col3 = st.columns(3)
+
+    col1.metric("Total Features", retraining_info["total_features"])
+    col2.metric("Drifted Features", retraining_info["drifted_features"])
+    col3.metric("Drift Ratio", round(retraining_info["drift_ratio"], 3))
+
+    st.write(retraining_info["recommendation"])
+
+    feature_results_df = pd.DataFrame(retraining_info["feature_results"])
+    st.dataframe(feature_results_df, use_container_width=True)
+
+else:
+    st.warning(
+        "No retraining recommendation found yet. "
+        "Run scripts/retraining_recommendation.py first."
+    )

@@ -1,0 +1,125 @@
+{
+    "total_features": 19,
+    "drifted_features": 18,
+    "drift_ratio": 0.9473684210526315,
+    "drift_ratio_threshold": 0.3,
+    "p_value_threshold": 0.05,
+    "retraining_recommended": true,
+    "recommendation": "Retraining is recommended because a significant share of input features show distribution drift compared to the reference training data.",
+    "feature_results": [
+        {
+            "feature": "age",
+            "feature_type": "numerical",
+            "p_value": 7.648218346296148e-78,
+            "drift_detected": true
+        },
+        {
+            "feature": "job",
+            "feature_type": "categorical",
+            "p_value": 0.0,
+            "drift_detected": true
+        },
+        {
+            "feature": "marital",
+            "feature_type": "categorical",
+            "p_value": 3.941157386197742e-100,
+            "drift_detected": true
+        },
+        {
+            "feature": "education",
+            "feature_type": "categorical",
+            "p_value": 6.195012432235378e-114,
+            "drift_detected": true
+        },
+        {
+            "feature": "default",
+            "feature_type": "categorical",
+            "p_value": 7.331907094059283e-307,
+            "drift_detected": true
+        },
+        {
+            "feature": "housing",
+            "feature_type": "categorical",
+            "p_value": 2.53769174677768e-10,
+            "drift_detected": true
+        },
+        {
+            "feature": "loan",
+            "feature_type": "categorical",
+            "p_value": 0.3446765436691428,
+            "drift_detected": false
+        },
+        {
+            "feature": "contact",
+            "feature_type": "categorical",
+            "p_value": 0.0,
+            "drift_detected": true
+        },
+        {
+            "feature": "month",
+            "feature_type": "categorical",
+            "p_value": 0.0,
+            "drift_detected": true
+        },
+        {
+            "feature": "day_of_week",
+            "feature_type": "categorical",
+            "p_value": 9.105065646798597e-48,
+            "drift_detected": true
+        },
+        {
+            "feature": "campaign",
+            "feature_type": "numerical",
+            "p_value": 2.0716334071666557e-59,
+            "drift_detected": true
+        },
+        {
+            "feature": "pdays",
+            "feature_type": "numerical",
+            "p_value": 8.1485744087753775e-196,
+            "drift_detected": true
+        },
+        {
+            "feature": "previous",
+            "feature_type": "numerical",
+            "p_value": 0.0,
+            "drift_detected": true
+        },
+        {
+            "feature": "poutcome",
+            "feature_type": "categorical",
+            "p_value": 0.0,
+            "drift_detected": true
+        },
+        {
+            "feature": "emp.var.rate",
+            "feature_type": "numerical",
+            "p_value": 0.0,
+            "drift_detected": true
+        },
+        {
+            "feature": "cons.price.idx",
+            "feature_type": "numerical",
+            "p_value": 0.0,
+            "drift_detected": true
+        },
+        {
+            "feature": "cons.conf.idx",
+            "feature_type": "numerical",
+            "p_value": 0.0,
+            "drift_detected": true
+        },
+        {
+            "feature": "euribor3m",
+            "feature_type": "numerical",
+            "p_value": 0.0,
+            "drift_detected": true
+        },
+        {
+            "feature": "nr.employed",
+            "feature_type": "numerical",
+            "p_value": 0.0,
+            "drift_detected": true
+        }
+    ]
+}
