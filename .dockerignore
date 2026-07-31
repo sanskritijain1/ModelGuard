@@ -1,0 +1,16 @@
+.git
+__pycache__/
+*.pyc
+.DS_Store
+
+data/raw/
+data/processed/
+data/*.db
+
+models/*.pkl
+models/*.joblib
+
+mlruns/
+mlartifacts/
+
+.env
